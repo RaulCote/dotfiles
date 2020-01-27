@@ -22,7 +22,6 @@ set ttimeoutlen=0 "no timeout when switching modes
 let mapleader = ' ' "set space as mapleader
 set lazyredraw "attemps to kill vim lag
 set nostartofline "keep cursor in same place when changing buffers
-set autowrite "write changes when changing buffers
 set splitbelow "new horizontal splits down
 set splitright "new vertical splits at right
 " Start scrolling before cursor gets to the edge
@@ -67,12 +66,17 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
 " put everything between surroundings
 Plug 'tpope/vim-surround'
+" close html tags with > char
+Plug 'alvan/vim-closetag'
 " intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " airline :: status bar customization
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" maintain Layout when closing buffers
+Plug 'moll/vim-bbye'
 
 " fzf :: fuzzy search files 
 " silver searcher or ripgrep: sudo apt-get ripgrep / silversearcher -ag
@@ -192,6 +196,12 @@ let g:indentLine_setColors = 0
 let g:indentLine_char='▏'
 
 "***************************************************
+"***************** closetag ************************
+"***************************************************
+
+let g:closetag_filenames = "*.html,*.js,*.jsx"
+
+"***************************************************
 "******************* coc ***************************
 "***************************************************
 
@@ -289,6 +299,8 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <C-k> :bprevious<CR>
 " Next buffer 
 nnoremap <C-j> :bnext<CR>
+" close buffer
+nnoremap <Leader>bd :Bdelete<CR> 
 " Next occurrence
 nnoremap <F2> :cnext<CR>
 " Previous occurence 
@@ -301,6 +313,13 @@ nmap <silent> <leader>sy <Plug>(coc-rename)
 nmap <silent> <leader>dy <Plug>(coc-type-definition)
 " save session
 nmap SQ <Esc>:mksession!~/Documents/vimsessions/Session.vim<CR>:wqa<CR>
+" Open new line below and above current line
+nnoremap <leader>o o<esc>
+nnoremap <leader>O O<esc>
+" close quickfix / location window
+nnoremap <leader>fc :cclose<bar>lclose<cr>
+" open quickfix
+nnoremap <leader>fo :copen<cr>
 
 "****************************************************
 "*********** comments *******************************
