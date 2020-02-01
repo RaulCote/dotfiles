@@ -26,8 +26,7 @@ set nostartofline "keep cursor in same place when changing buffers
 set splitbelow "new horizontal splits down
 set splitright "new vertical splits at right
 " Start scrolling before cursor gets to the edge
-set scroll=5 
-set scrolloff=3
+set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
 " restore session function
@@ -46,7 +45,7 @@ autocmd VimEnter * call RestoreSession()
 call plug#begin('~/.config/nvim/plugged')
 
 " ale :: for eslint / prettier use
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " colors schemes
 Plug 'ayu-theme/ayu-vim' " ayu
@@ -156,12 +155,12 @@ let g:airline_symbols.maxlinenr = ''
 "******************** ale config ********************
 "****************************************************
 
-let g:ale_fixers = {
- \ 'javascript': ['eslint']
- \ }
+" let g:ale_fixers = {
+"  \ 'javascript': ['eslint']
+"  \ }
 
-" Fix files automatically on save
-let g:ale_fix_on_save = 1
+" " Fix files automatically on save
+" let g:ale_fix_on_save = 1
 
 "****************************************************
 "******************** color scheme ******************
@@ -278,6 +277,7 @@ nmap <Leader>hj <Plug>(GitGutterNextHunk)
 nmap <F12> :GitGutterToggle<CR>
 nmap <Leader>hu <Plug>(GitGutterUndoHunk)
 nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
+
 "***************************************************
 "**************** smooth scroll ********************
 "***************************************************
@@ -287,14 +287,15 @@ let g:smoothie_update_interval = 5
 
 "***************************************************
 "******************** syntax ***********************
-"*********** 
+"*************************************************** 
+
 let g:javascript_plugin_jsdoc=1 "vim-javascript for jsdoc
 
 "***************************************************
 "******************* key bindings ******************
 "***************************************************
 
-" remap ñ as / for easier search
+" ñ as / for easier search as / is not comfy in spanish keyboard
 nnoremap ñ /
 " Search files by name : only those listed in git (no node_modules etc)
 nnoremap <C-p> :GFiles<CR>
@@ -323,11 +324,4 @@ nnoremap <leader>O O<esc>
 nnoremap <leader>fc :cclose<bar>lclose<cr>
 " open quickfix
 nnoremap <leader>fo :copen<cr>
-
-"****************************************************
-"*********** comments *******************************
-"****************************************************
-"To install ctags:
-"https://askubuntu.com/questions/796408/installing-and-using-universal-ctags-instead-of-exuberant-ctags
-"
 
