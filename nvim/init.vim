@@ -295,7 +295,7 @@ let g:javascript_plugin_jsdoc=1 "vim-javascript for jsdoc
 "***************************************************
 
 " remap ñ as / for easier search
-
+nnoremap ñ /
 " Search files by name : only those listed in git (no node_modules etc)
 nnoremap <C-p> :GFiles<CR>
 " Previous buffer 
