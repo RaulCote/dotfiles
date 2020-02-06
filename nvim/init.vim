@@ -31,12 +31,6 @@ set sidescrolloff=15
 set sidescroll=1
 " restore session function
 set nostartofline
-function! RestoreSession()
-  if argc() == 0 "vim called without arguments 
-    execute'source~/Documents/vimsessions/Session.vim'
-  endif
-endfunction
-autocmd VimEnter * call RestoreSession()
 
 "****************************************************
 "*************** vim-plug section *******************
@@ -272,11 +266,6 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '•'
 let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 0
-nmap <Leader>hk <Plug>(GitGutterPrevHunk)
-nmap <Leader>hj <Plug>(GitGutterNextHunk)  
-nmap <F12> :GitGutterToggle<CR>
-nmap <Leader>hu <Plug>(GitGutterUndoHunk)
-nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 
 "***************************************************
 "**************** smooth scroll ********************
@@ -297,31 +286,37 @@ let g:javascript_plugin_jsdoc=1 "vim-javascript for jsdoc
 
 " ñ as / for easier search as / is not comfy in spanish keyboard
 nnoremap ñ /
-" Search files by name : only those listed in git (no node_modules etc)
-nnoremap <C-p> :GFiles<CR>
 " Previous buffer 
 nnoremap <C-k> :bprevious<CR>
 " Next buffer 
 nnoremap <C-j> :bnext<CR>
 " close buffer
 nnoremap <Leader>bd :Bdelete<CR> 
-" Next occurrence
-nnoremap <F2> :cnext<CR>
-" Previous occurence 
-nnoremap <F3> :cprev<CR> 
+" Open new line below and above current line
+nnoremap <leader>o o<esc>
+nnoremap <leader>O O<esc>
+"""""""""""""""""""""""""""""""""""""""""""""""""""" git gutter
+nmap <Leader>hj <Plug>(GitGutterNextHunk)  
+nmap <Leader>hk <Plug>(GitGutterPrevHunk)
+nmap <F12> :GitGutterToggle<CR>
+nmap <Leader>hu <Plug>(GitGutterUndoHunk)
+nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
+""""""""""""""""""""""""""""""""""""""""""""""""""""" coc
 " COC : Go to Definition with leader gd , back from definition Ctrl-6
 nmap <silent> <leader>gd <Plug>(coc-definition)
 " COC : Rename symbol
 nmap <silent> <leader>sy <Plug>(coc-rename)
-
-nmap <silent> <leader>dy <Plug>(coc-type-definition)
-" save session
-nmap SQ <Esc>:mksession!~/Documents/vimsessions/Session.vim<CR>:wqa<CR>
-" Open new line below and above current line
-nnoremap <leader>o o<esc>
-nnoremap <leader>O O<esc>
+""""""""""""""""""""""""""""""""""""""""""""""""""""" fzf
+" Search files by name : only those listed in git (no node_modules etc)
+nnoremap <C-p> :GFiles<CR>
+" Search on project term under cursor
+nnoremap <C-f> :Ag <C-R><C-W> *<CR>
+" Search on project visual selection
+xnoremap <C-f> "vy:<C-u>Ag <C-r>v<CR>: 
+"""""""""""""""""""""""""""""""""""""""""""""""""""" quickfix
+nnoremap <leader>fj :cnext<CR>
+nnoremap <leader>fk :cprev<CR> 
 " close quickfix / location window
 nnoremap <leader>fc :cclose<bar>lclose<cr>
-" open quickfix
 nnoremap <leader>fo :copen<cr>
 
