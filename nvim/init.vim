@@ -29,8 +29,19 @@ set splitright "new vertical splits at right
 set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
-" restore session function
 set nostartofline
+" don't start auto comment
+au BufEnter * set fo-=c fo-=r fo-=o
+" autoreload changes made outside vim
+
+if ! exists("g:CheckUpdateStarted")
+  let g:CheckUpdateStarted=1
+  call timer_start(1,'CheckUpdate')
+endif
+function! CheckUpdate(timer)
+  silent! checktime
+  call timer_start(1000,'CheckUpdate')
+endfunction
 
 "****************************************************
 "*************** vim-plug section *******************
