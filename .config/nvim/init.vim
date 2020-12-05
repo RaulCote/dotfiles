@@ -2,8 +2,8 @@
 "*************** general config *********************
 "****************************************************
 
-" set number " allow line numbers
-" set relativenumber " display relative numbers to cursor position
+set number " allow line numbers
+set relativenumber " display relative numbers to cursor position
 set cursorline " highlight current line
 set mouse=a
 set noswapfile "no swap file
@@ -51,6 +51,14 @@ function! CheckUpdate(timer)
 endfunction
 
 "****************************************************
+"**************** filetypes *************************
+"****************************************************
+autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype javascriptreact setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+
+"****************************************************
 "*************** vim-plug section *******************
 "****************************************************
 
@@ -59,6 +67,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'suxpert/vimcaps'
 " colors schemes
+Plug 'barlog-m/oceanic-primal-vim'
 Plug 'ayu-theme/ayu-vim' " ayu
 Plug 'morhetz/gruvbox' " gruvbox
 Plug 'hzchirs/vim-material' " material different version : the closer to VSC one
@@ -88,6 +97,7 @@ Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
 " intellisense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 
 " airline :: status bar customization
 Plug 'vim-airline/vim-airline'
@@ -121,6 +131,7 @@ Plug 'airblade/vim-gitgutter'
 
 "git fugitive
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim'
 
 " smooth scrolling
 Plug 'psliwka/vim-smoothie'
@@ -191,6 +202,8 @@ let ayucolor = 'mirage'
 colorscheme ayu
 let g:airline_theme = 'ayu_mirage'
 
+" colorscheme oceanic-primal
+
 " colorscheme horizon
 
 " let g:sonokai_style = 'shusia'
@@ -251,6 +264,7 @@ let g:closetag_filenames = "*.html,*.js,*.jsx"
 "******************* coc ***************************
 "***************************************************
 
+autocmd FileType scss setl iskeyword+=@-@
 "note : prettier-eslint inside .config/coc/extensions/node_modules/coc-prettier/package.json - ^10.1.1 - forced to 9.0.1
 call coc#add_extension('coc-pairs', 'coc-eslint', 'coc-prettier', 'coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-snippets', 'coc-highlight', 'coc-emmet', 'coc-python')
 
@@ -378,6 +392,9 @@ nmap <F12> :GitGutterToggle<CR>
 nmap <Leader>hu <Plug>(GitGutterUndoHunk)
 nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 nmap <Leader>hf :GitGutterEnable<bar>GitGutterQuickFix<bar>copen<CR><CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""" git messenger
+"hunk blame
+nmap <Leader>hb :GitMessenger<CR> 
 """"""""""""""""""""""""""""""""""""""""""""""""""""" coc
 " COC : Go to Definition with leader gd , back from definition Ctrl-6
 nmap <silent> <leader>gd <Plug>(coc-definition)
@@ -386,7 +403,9 @@ nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gy <Plug>(coc-type-definition)
 nnoremap <silent> <F11> :<C-u>CocList diagnostics<cr>
 " COC : Rename symbol
-nmap <silent> <leader>sy <Plug>(coc-rename)
+" nmap <silent> <leader>sy <Plug>(coc-rename)
+" Coc-fzf - search symbols
+nmap <silent> <leader>sy :CocFzfList symbols<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""" fzf
 nnoremap <leader>rg :Rg<CR>'
 " Search files by name : only those listed in git (no node_modules etc)

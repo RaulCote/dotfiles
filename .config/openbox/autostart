@@ -3,11 +3,29 @@
 # start compositor
 compton -b &
 
+# set natural scroll on touchpad (number value is exclusive, check yours with: 
+# synclient command )
+synclient VertScrollDelta=-109 &
+synclient HorizScrollDelta=-109 &
+
+#num lock keys starts on
+numlockx on &
+
 # start tint2
-(sleep 2s && tint2) &
+# (sleep 2s && tint2 -c ~/.config/tint2/ayu-systray.tint2rc) &
+(sleep 2s && tint2 -c ~/.config/tint2/ayu-vertical-taskbar.tint2rc) &
+
+
+# mx linux updates systray
+ionice -c3 nice -n19 nohup python /usr/bin/apt-notifier.py 1>/dev/null 2>&1  &
 
 # start last wallpaper
 nitrogen --restore &
+
+# export Qt variables
+export QT_QPA_PLATFORMTHEME=gtk2
+export QT_PLATFORMTHEME=gtk2
+export QT_PLATFORM_PLUGIN=gtk2
 
 # add root access
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &

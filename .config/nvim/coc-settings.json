@@ -1,18 +1,20 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": [
-    	"css", 
-    	"javascript", 
-    	"typescript", 
-    	"javascriptreact",
-    	"scss", 
-    	"json", 
-    	"graphql", 
-    	"html",
-    	"yaml"
-    ],
-    "eslint.nodePath": "./node_modules",
-    "python.jediEnabled": false,
-    "emmet.includeLanguages": { "javascript": "javascriptreact" },
-    // "pairs.disableLanguages": ["markdown"]
-    // "prettier.eslintIntegration": true
+  "javascript.suggestionActions.enabled": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "scss",
+    "json",
+    "graphql",
+    "html",
+    "yaml"
+  ],
+  "eslint.nodePath": "./node_modules",
+  "eslint.enable": true,
+  "python.jediEnabled": false,
+  "emmet.includeLanguages": { "javascript": "javascriptreact" }
+  // "pairs.disableLanguages": ["markdown"]
+  // "prettier.eslintIntegration": true
 }
